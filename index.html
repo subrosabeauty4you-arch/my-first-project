@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subrosa Beauty — The Vegan Gloss</title>
+  <meta name="description" content="Subrosa Beauty — luxury vegan, cruelty-free lip gloss in three shades." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./assets/vendor/three/three.module.js",
+        "three/addons/": "./assets/vendor/three/addons/"
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="logo" href="#top">
+        <img class="logo__img" id="logo-img" src="assets/img/logo.png" alt="Subrosa Beauty logo" />
+        <span class="logo__text" id="logo-text"></span>
+      </a>
+      <nav class="nav__links" id="nav-links"></nav>
+      <a class="nav__cta" id="nav-cta" href="#products"></a>
+      <button class="nav__burger" id="nav-burger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="nav__mobile" id="nav-mobile"></nav>
+  </header>
+
+  <!-- ============ HERO / 3D ============ -->
+  <section class="hero" id="top">
+    <div class="hero__decor" aria-hidden="true">
+      <span class="floaty floaty--1"></span>
+      <span class="floaty floaty--2"></span>
+      <span class="floaty floaty--3"></span>
+    </div>
+
+    <div class="hero__scene" id="hero-scene">
+      <canvas id="gloss-canvas"></canvas>
+      <div class="hero__hint">drag to rotate</div>
+    </div>
+
+    <div class="hero__copy" id="hero-copy">
+      <p class="eyebrow" id="hero-eyebrow"></p>
+      <h1 class="headline" id="hero-headline"></h1>
+      <p class="subheadline" id="hero-tagline"></p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" id="hero-cta-primary" href="#products"></a>
+        <a class="btn btn--ghost" id="hero-cta-secondary" href="#about"></a>
+      </div>
+    </div>
+
+    <div class="hero__scroll" aria-hidden="true"><span></span></div>
+  </section>
+
+  <!-- ============ FEATURED PRODUCTS ============ -->
+  <section class="products" id="products">
+    <div class="section__inner">
+      <p class="eyebrow reveal" id="products-eyebrow"></p>
+      <h2 class="section__heading reveal" id="products-heading"></h2>
+      <p class="section__sub reveal" id="products-sub"></p>
+
+      <div class="product-grid" id="product-grid"></div>
+    </div>
+  </section>
+
+  <!-- ============ PRODUCT DETAIL ============ -->
+  <section class="product-detail">
+    <div class="section__inner product-detail__inner">
+      <div class="product-detail__copy reveal">
+        <h3 id="product-name"></h3>
+        <p class="product-detail__tagline" id="product-tagline"></p>
+        <p class="product-detail__price" id="product-price"></p>
+        <p class="product-detail__description" id="product-description"></p>
+
+        <ul class="feature-list" id="feature-list"></ul>
+
+        <div class="ingredients-block">
+          <h4>Ingredients</h4>
+          <p class="ingredients" id="ingredients-text"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="about" id="about">
+    <div class="section__inner about__inner">
+      <div class="about__copy">
+        <p class="eyebrow reveal" id="about-eyebrow"></p>
+        <h2 class="section__heading reveal" id="about-heading"></h2>
+        <p class="about__body reveal" id="about-body"></p>
+      </div>
+      <div class="about__stats reveal" id="about-stats"></div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="services" id="services">
+    <div class="section__inner">
+      <p class="eyebrow reveal" id="services-eyebrow"></p>
+      <h2 class="section__heading reveal" id="services-heading"></h2>
+      <p class="section__sub reveal" id="services-sub"></p>
+
+      <div class="service-grid" id="service-grid"></div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT / BOOKING ============ -->
+  <section class="contact" id="contact">
+    <div class="section__inner contact__inner">
+      <div class="contact__copy reveal">
+        <p class="eyebrow" id="contact-eyebrow"></p>
+        <h2 class="section__heading" id="contact-heading"></h2>
+        <p class="section__sub" id="contact-sub"></p>
+        <p class="contact__email" id="contact-email"></p>
+      </div>
+
+      <form class="contact__form reveal" id="contact-form">
+        <label>
+          Name
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          Message
+          <textarea name="message" rows="4" required></textarea>
+        </label>
+        <p class="contact__note" id="contact-note"></p>
+        <button type="submit" class="btn btn--primary" id="contact-submit"></button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <p id="footer-note"></p>
+    <div class="footer__social" id="footer-social"></div>
+  </footer>
+
+  <script src="assets/vendor/gsap/gsap.min.js"></script>
+  <script src="assets/vendor/gsap/ScrollTrigger.min.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/content.js"></script>
+  <script type="module" src="assets/js/scene.js"></script>
+  <script src="assets/js/animations.js"></script>
+</body>
+</html>

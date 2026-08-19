@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Lueur — Essence of Light</title>
+<meta name="description" content="Lueur — a luxury lip gloss born from the belief that true beauty needs no filter, only light.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💋</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Marcellus&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Loader -->
+<div id="loader" aria-hidden="true">
+  <div class="loader-mark">Lueur</div>
+  <div class="loader-bar"><span></span></div>
+</div>
+
+<!-- Side Navigation -->
+<nav class="side-nav" aria-label="Page navigation">
+  <div class="page-counter"><span id="counter-current">01</span><span class="counter-sep">/</span><span id="counter-total">04</span></div>
+  <ul class="nav-dots">
+    <li><button class="dot active" data-target="0" aria-label="Go to Brand Story"><span></span><em>Brand Story</em></button></li>
+    <li><button class="dot" data-target="1" aria-label="Go to About the Gloss"><span></span><em>About the Gloss</em></button></li>
+    <li><button class="dot" data-target="2" aria-label="Go to Shades Collection"><span></span><em>Shades</em></button></li>
+    <li><button class="dot" data-target="3" aria-label="Go to Shop Now"><span></span><em>Shop Now</em></button></li>
+  </ul>
+</nav>
+
+<div class="wordmark-fixed">LUEUR</div>
+
+<main id="scroll-container">
+
+  <!-- PAGE 1 — BRAND STORY -->
+  <section class="page page--story" id="page-0" data-index="0">
+    <div class="story-bg">
+      <div class="glow glow--1"></div>
+      <div class="glow glow--2"></div>
+      <canvas id="particles-canvas"></canvas>
+    </div>
+    <div class="page-inner story-inner">
+      <p class="eyebrow reveal">Luxury Lip Gloss</p>
+      <h1 class="brand-name shimmer reveal">Lueur</h1>
+      <p class="brand-motto reveal">Essence&nbsp;of&nbsp;Light</p>
+      <p class="brand-philosophy reveal">
+        Lueur is luminosity distilled — a gloss born from the belief that true beauty needs
+        no filter, only light. Each formula is hand-poured in small batches, blending rare
+        botanical oils with a whisper of gold shimmer. This is not makeup. This is radiance, bottled.
+      </p>
+      <button class="scroll-cue" id="scroll-cue" aria-label="Scroll to explore">
+        <span>Discover</span>
+        <svg width="22" height="34" viewBox="0 0 22 34" fill="none">
+          <rect x="1" y="1" width="20" height="32" rx="10" stroke="currentColor" stroke-width="1.2"/>
+          <circle class="cue-dot" cx="11" cy="10" r="2.6" fill="currentColor"/>
+        </svg>
+        <svg class="chevron" width="16" height="9" viewBox="0 0 16 9" fill="none"><path d="M1 1L8 8L15 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- PAGE 2 — ABOUT THE GLOSS -->
+  <section class="page page--about" id="page-1" data-index="1">
+    <div class="page-inner about-inner">
+      <div class="about-copy">
+        <p class="eyebrow reveal">The Formula</p>
+        <h2 class="section-title reveal">Crafted Perfection</h2>
+        <p class="about-story reveal">
+          Every Lueur gloss begins with an obsession for light. Our chemists spent three years
+          perfecting a base that feels weightless yet performs like armor — a formula that moves
+          with your lips instead of sitting on them. We infuse each batch with cold-pressed jojoba
+          oil, vitamin E, and a micro-fine pearl complex sourced from sustainable studios in Grasse,
+          France. The result is a gloss that catches light from every angle without a single grain
+          of grit or a trace of stickiness. Inspired by candlelit dinners and golden-hour skin, Lueur
+          was designed for the woman who wants her lips to look lit from within — not painted on.
+          It's the difference between wearing gloss and glowing.
+        </p>
+        <ul class="benefits reveal">
+          <li><span class="benefit-num">12+</span><div><strong>Hours of Wear</strong><p>All-day radiance that survives coffee, kisses &amp; conversation.</p></div></li>
+          <li><span class="benefit-num">V</span><div><strong>Vegan &amp; Cruelty-Free</strong><p>100% plant-derived, never tested on animals.</p></div></li>
+          <li><span class="benefit-num">✦</span><div><strong>Luminous, Non-Sticky Finish</strong><p>High-shine mirror gloss with a weightless feel.</p></div></li>
+          <li><span class="benefit-num">✿</span><div><strong>Botanical Infusion</strong><p>Jojoba oil &amp; vitamin E nourish while you shine.</p></div></li>
+        </ul>
+      </div>
+      <div class="about-product">
+        <div class="bottle-stage" id="bottle-stage">
+          <canvas id="bottle-canvas"></canvas>
+        </div>
+        <p class="drag-hint"><span>↔</span> Move to rotate</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 3 — SHADES COLLECTION -->
+  <section class="page page--shades" id="page-2" data-index="2">
+    <div class="page-inner shades-inner">
+      <p class="eyebrow reveal">The Palette</p>
+      <h2 class="section-title reveal">Our Signature Collection</h2>
+      <p class="section-sub reveal">Six luminous shades, each poured to flatter every skin tone — from sheer glass to full pigment.</p>
+
+      <div class="shade-grid reveal">
+        <button class="shade-card" style="--shade:#d9a9ac;--shade-dark:#b97e82;">
+          <span class="shade-circle"></span>
+          <span class="shade-name">Radiant Rose</span>
+          <span class="shade-desc">Soft pink with a pearl finish</span>
+        </button>
+        <button class="shade-card" style="--shade:#c98a4b;--shade-dark:#9c6631;">
+          <span class="shade-circle"></span>
+          <span class="shade-name">Amber Glow</span>
+          <span class="shade-desc">Warm honey bronze shimmer</span>
+        </button>
+        <button class="shade-card" style="--shade:#dab6a3;--shade-dark:#b4907d;">
+          <span class="shade-circle"></span>
+          <span class="shade-name">Blush Nude</span>
+          <span class="shade-desc">Your-lips-but-better nude</span>
+        </button>
+        <button class="shade-card" style="--shade:#e0a3ab;--shade-dark:#c17b85;">
+          <span class="shade-circle"></span>
+          <span class="shade-name">Rosé Petal</span>
+          <span class="shade-desc">Cool-toned rose with subtle sparkle</span>
+        </button>
+        <button class="shade-card" style="--shade:#b5651d;--shade-dark:#8a4c14;">
+          <span class="shade-circle"></span>
+          <span class="shade-name">Copper Kiss</span>
+          <span class="shade-desc">Rich copper with golden flecks</span>
+        </button>
+        <button class="shade-card" style="--shade:#a13d4c;--shade-dark:#7a2c38;">
+          <span class="shade-circle"></span>
+          <span class="shade-name">Sheer Ruby</span>
+          <span class="shade-desc">Translucent wine-red tint</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 4 — SHOP NOW -->
+  <section class="page page--shop" id="page-3" data-index="3">
+    <div class="page-inner shop-inner">
+      <p class="eyebrow eyebrow--dark reveal">Limited Batch</p>
+      <h2 class="shop-title reveal">Ready to Glow?</h2>
+      <p class="shop-copy reveal">
+        Lueur isn't just a gloss — it's a ritual of radiance. Join thousands who've made the
+        switch to luxury that performs as beautifully as it feels. Your glow is waiting.
+      </p>
+
+      <div class="stats-grid reveal">
+        <div class="stat-card"><span class="stat-value">12+</span><span class="stat-label">Hours of Wear</span></div>
+        <div class="stat-card"><span class="stat-value">6</span><span class="stat-label">Signature Shades</span></div>
+        <div class="stat-card"><span class="stat-value">100%</span><span class="stat-label">Vegan &amp; Cruelty-Free</span></div>
+        <div class="stat-card"><span class="stat-value">$32</span><span class="stat-label">Free Shipping $50+</span></div>
+      </div>
+
+      <a class="cta-button reveal" href="https://shop.lueurbeauty.com" target="_blank" rel="noopener noreferrer">
+        <span>Shop Lueur Collection</span>
+      </a>
+
+      <ul class="trust-badges reveal">
+        <li>Free shipping over $50</li>
+        <li>30-day returns</li>
+        <li>Cruelty-free certified</li>
+        <li>4.9★ · 2,300+ reviews</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "./js/vendor/three/build/three.module.js",
+    "three/addons/": "./js/vendor/three/examples/jsm/"
+  }
+}
+</script>
+<script type="module" src="js/bottle3d.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

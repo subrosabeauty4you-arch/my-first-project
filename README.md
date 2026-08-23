@@ -1,84 +1,100 @@
 # Subrosa Beauty
 
-A luxury, single-product brand site for **Subrosa Beauty** — vegan, cruelty-free
+A luxury, multi-page brand site for **Subrosa Beauty** — vegan, cruelty-free
 lip gloss. Built as plain HTML/CSS/JS (no build step, no framework, no
-external CDNs — all libraries are bundled locally) so it's easy to open, edit,
+external CDNs — every library is bundled locally) so it's easy to open, edit,
 and host anywhere.
 
-- **3D hero** — a gloss bottle rendered with [Three.js](https://threejs.org/),
-  drag to spin it, with a drifting field of gold particles behind it.
-- **Scroll animations** — hero entrance, parallax, and section reveals powered
-  by [GSAP](https://gsap.com/) + ScrollTrigger.
-- **Sections** — Nav, Hero, Featured Products (the gloss's shades), Product
-  detail, About, Services, Contact/booking, Footer.
-- **Palette** — beige, gold, and cream, defined in one place for easy
-  re-theming.
+## Pages
+
+| Page | URL | What's there |
+|---|---|---|
+| Our Story | `/` | Brand story ("sub rosa"), founder, values, 3D hero |
+| Speciality | `/speciality/` | The vegan formula, ingredients, free-from claims, application ritual |
+| Shades | `/shades/` | Interactive 3D shade picker (tap a swatch, the bottle's liquid recolors) + full shade grid |
+
+## What's inside
+
+- **Ultra-realistic 3D bottle** — [Three.js](https://threejs.org/) with a
+  glass shell over a colored liquid core, real shadow-mapped lighting, a
+  soft studio backdrop, and Unreal-bloom post-processing for glossy
+  highlights. Drag to rotate.
+- **Interactive shade picker** — clicking a swatch on `/shades/` smoothly
+  tweens the 3D liquid's color to match (via [GSAP](https://gsap.com/)).
+- **Scroll animations** — reveals, hero parallax, and 3D tilt-on-hover on
+  card grids, powered by GSAP + ScrollTrigger.
+- **Palette** — beige, gold, and cream, defined once and shared by all pages.
 
 ## Running it locally
 
-Just open `index.html` in a browser, or serve the folder so the module
-imports work reliably:
+Serve the folder so the module imports and page routes work correctly:
 
 ```bash
 python3 -m http.server 8000
 # then visit http://localhost:8000
 ```
 
+(Opening `index.html` directly via `file://` will break the 3D scenes,
+since ES module imports require an HTTP server.)
+
+## Making it public ("everyone sees it")
+
+This repo includes a GitHub Actions workflow
+(`.github/workflows/deploy-pages.yml`) that deploys the site to GitHub Pages
+automatically on every push to `main`. To turn it on (one-time step):
+
+1. On GitHub, go to **Settings → Pages**.
+2. Under **Source**, choose **GitHub Actions**.
+3. Push to `main` (or merge this branch into it) — the workflow will build
+   and publish automatically, and the Pages URL will show up in
+   **Settings → Pages** once it's live.
+
+Alternatively, any static host (Netlify, Vercel, Cloudflare Pages) works too
+— just point it at the repo root with no build command.
+
 ## Editing the site
 
-**Almost everything (text, prices, descriptions, colors, links) lives in one
-file:** [`assets/js/config.js`](assets/js/config.js). Open it, change the
-values between the quotes, save, and refresh the page.
+**Almost everything (text, prices, colors, links) lives in one file:**
+[`assets/js/config.js`](assets/js/config.js). Open it, change the values
+between the quotes, save, and refresh.
 
 | Want to change... | Edit... |
 |---|---|
-| Hero headline / tagline / buttons | `assets/js/config.js` → `hero` |
-| Shades shown in "Featured Products" | `assets/js/config.js` → `shades` |
-| Product description / ingredients / features | `assets/js/config.js` → `product` |
-| About section story & stats | `assets/js/config.js` → `about` |
-| Services / perks cards | `assets/js/config.js` → `services` |
-| Contact email & form copy | `assets/js/config.js` → `contact` |
-| Nav links, footer, social links | `assets/js/config.js` → `nav`, `footerNote`, `socialLinks` |
-| Colors (beige / gold / cream) | `assets/js/config.js` → `colors` |
-| Page layout / structure | `index.html` |
+| Hero headline / tagline / buttons | `config.js` → `hero` |
+| Our Story narrative | `config.js` → `narrative` |
+| Founder name, quote, bio | `config.js` → `founder` |
+| Brand values cards | `config.js` → `values` |
+| Ingredients list | `config.js` → `ingredients` |
+| "Free from" claims | `config.js` → `freeFrom` |
+| Application ritual steps | `config.js` → `ritual` |
+| Shades (name, color, price, description) | `config.js` → `shades` |
+| Nav links, footer, social/contact | `config.js` → `nav`, `footerNote`, `footerEmail`, `socialLinks` |
+| Colors (beige / gold / cream) | `config.js` → `colors` |
+| Page layout / structure | `index.html`, `speciality/index.html`, `shades/index.html` |
 | Styling details | `assets/css/style.css` |
-| The 3D bottle | `assets/js/scene.js` |
+| The 3D bottle itself | `assets/js/three-common.js` |
+| Hero vs. shade-picker 3D scenes | `assets/js/scene-hero.js`, `assets/js/scene-shades.js` |
 | Scroll / hover animations | `assets/js/animations.js` |
+| Nav / footer rendering | `assets/js/chrome.js` (shared by all pages) |
 
-Subrosa currently sells one formula (the Vegan Gloss) in a few shades, so the
-"Featured Products" grid is generated from the `shades` array rather than
-separate products. If you launch more products later, it's easiest to extend
-that array (or ask Claude to help split it into a real multi-product grid).
+Each page's `<head>` sets two small constants — `SUBROSA_BASE` (`"./"` at
+the root, `"../"` one level down) and `SUBROSA_PAGE` (for nav highlighting).
+If you add a new page in a new folder, copy an existing page's markup and
+update those two lines.
 
-## Adding your real logo & product photo
+## Adding your real logo, founder photo & product label
 
-The site currently uses a generated text logo and a text label drawn onto
-the 3D bottle, so it works before any images exist. To swap in your real
-assets:
+The site currently uses a generated text logo, a placeholder "Founder
+photo" card, and a text label drawn onto the 3D bottle, so it works before
+any images exist. To swap in your real assets, just add these files (no
+code changes needed):
 
-1. **Logo** — save your logo as `assets/img/logo.png` (transparent
-   background works best). The site automatically detects it and replaces
-   the text logo in the nav bar.
-2. **Product label on the 3D bottle** — save an image (square works best,
-   e.g. 512×512px) to `assets/img/product-label.png`, then in
-   `assets/js/config.js` set:
-   ```js
-   product: {
-     ...
-     labelImage: "assets/img/product-label.png",
-   }
-   ```
-   This replaces the generated text label on the bottle with your image.
-
-No other code changes are needed — just add the files and/or send them to
-Claude to drop in for you.
-
-## Contact form
-
-The contact form currently opens the visitor's email client with their
-message pre-filled (no backend required). If you'd rather receive
-submissions directly, swap the form's behavior in `assets/js/content.js`
-(search for `contact-form`) for a service like Formspree or Netlify Forms.
+- `assets/img/logo.png` — replaces the text logo in the nav.
+- `assets/img/founder.jpg` — replaces the founder photo placeholder on
+  the Our Story page.
+- `assets/img/product-label.png` (square, e.g. 512×512px) — then in
+  `assets/js/config.js` set `product.labelImage` to that path to replace
+  the generated text label on the 3D bottle.
 
 ## Third-party libraries
 
@@ -86,8 +102,3 @@ Three.js and GSAP are vendored locally under `assets/vendor/` (not loaded
 from a CDN), so the site works fully offline and isn't dependent on any
 third-party service staying up. To upgrade them later, download a newer
 build and replace the files in that folder.
-
-## Deploying
-
-This is a static site — it can be hosted for free on GitHub Pages, Netlify,
-Vercel, or any static host. Just point the host at the repository root.

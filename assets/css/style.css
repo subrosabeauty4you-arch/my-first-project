@@ -45,6 +45,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   text-transform: uppercase;
   color: var(--gold);
   margin: 0 0 0.75rem;
+  text-align: center;
 }
 
 .section__heading {
@@ -61,9 +62,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 }
 
 .products .section__inner > .eyebrow,
-.products .section__inner > .section__heading,
-.services .section__inner > .eyebrow,
-.services .section__inner > .section__heading {
+.products .section__inner > .section__heading {
   text-align: center;
 }
 
@@ -159,6 +158,9 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 }
 
 .nav__links a:hover::after { transform: scaleX(1); }
+.nav__links a.is-active { color: var(--gold); }
+.nav__links a.is-active::after { transform: scaleX(1); }
+.nav__mobile a.is-active { color: var(--gold); }
 
 .nav__cta {
   border: 1px solid var(--gold);
@@ -250,7 +252,11 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   z-index: 1;
 }
 
-#gloss-canvas { width: 100%; height: 100%; display: block; cursor: grab; }
+#gloss-canvas {
+  width: 100%; height: 100%; display: block; cursor: grab;
+  border-radius: 28px;
+  box-shadow: 0 30px 60px rgba(58, 44, 34, 0.18);
+}
 #gloss-canvas:active { cursor: grabbing; }
 
 .hero__hint {
@@ -383,204 +389,239 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   .product-grid { grid-template-columns: 1fr; }
 }
 
-/* ============ PRODUCT DETAIL ============ */
-.product-detail { background: var(--beige); }
-
-.product-detail__inner { max-width: 720px; text-align: center; }
-.product-detail__tagline { color: var(--ink-muted); margin: 0.75rem 0 0.5rem; }
-.product-detail__price {
-  color: var(--gold);
-  font-size: 1.4rem;
-  font-family: "Cormorant Garamond", serif;
-  margin: 0;
+/* ============ SUBPAGE HEADER (Speciality / Shades) ============ */
+.page-header {
+  padding: 9rem 2rem 3rem;
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 0%, var(--beige) 0%, var(--cream) 65%);
 }
-.product-detail__description {
+.page-header .eyebrow, .page-header h1 { text-align: center; }
+.page-header h1 { font-size: clamp(2.3rem, 5vw, 3.4rem); }
+.page-header p {
   max-width: 600px;
-  margin: 1.75rem auto;
-  line-height: 1.8;
+  margin: 1rem auto 0;
   color: var(--ink-muted);
+  line-height: 1.7;
 }
 
-.feature-list {
-  max-width: 480px;
-  margin: 0 auto;
-  text-align: left;
+/* ============ NARRATIVE (Our Story) ============ */
+.narrative { background: var(--beige); }
+.narrative__inner { max-width: 720px; text-align: center; }
+.narrative__inner .eyebrow, .narrative__inner h2 { text-align: center; }
+.narrative__body {
+  margin-top: 1.5rem;
+  color: var(--ink-muted);
+  line-height: 1.95;
+  font-size: 1.02rem;
 }
-.feature-list li {
-  padding: 0.6rem 0;
-  border-bottom: 1px solid rgba(58, 44, 34, 0.08);
-  font-size: 0.95rem;
-}
-.feature-list li::before { content: "✦ "; color: var(--gold); }
+.narrative__body p { margin: 0 0 1.3rem; }
+.narrative__body p:last-child { margin-bottom: 0; }
 
-.ingredients-block { margin-top: 2.5rem; }
-.ingredients-block h4 { color: var(--gold); font-size: 1.05rem; margin-bottom: 0.6rem; }
-.ingredients { color: var(--ink-muted); line-height: 1.8; font-size: 0.92rem; }
-
-/* ============ ABOUT ============ */
-.about { background: var(--cream); }
-
-.about__inner {
+/* ============ FOUNDER ============ */
+.founder { background: var(--cream); }
+.founder__inner {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 3rem;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 3.5rem;
   align-items: center;
 }
 
-.about__copy .section__heading { text-align: left; }
-.about__copy .eyebrow { text-align: left; }
-
-.about__body {
-  color: var(--ink-muted);
-  line-height: 1.9;
-  margin-top: 1.25rem;
-  white-space: pre-line;
-}
-
-.about__stats {
-  display: flex;
-  flex-direction: column;
-  gap: 1.75rem;
-  background: linear-gradient(160deg, var(--beige), var(--beige-dark));
+.founder__photo-wrap {
+  aspect-ratio: 4 / 5;
   border-radius: 20px;
-  padding: 2.5rem 2rem;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--beige), var(--beige-dark));
+  position: relative;
 }
-
-.stat-item { text-align: center; }
-.stat-item__value {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 2.4rem;
-  color: var(--gold);
-  display: block;
-}
-.stat-item__label {
-  font-size: 0.78rem;
+.founder__photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.founder__photo-wrap.is-placeholder img { display: none; }
+.founder__photo-wrap.is-placeholder::after {
+  content: "Founder photo";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-muted);
+  font-size: 0.85rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ink-muted);
 }
+
+.founder__copy .eyebrow { text-align: left; }
+.founder__copy h2 { font-size: clamp(1.9rem, 3.5vw, 2.6rem); text-align: left; margin-bottom: 0.35rem; }
+.founder__title { color: var(--ink-muted); font-size: 0.9rem; margin-bottom: 1.4rem; }
+.founder__quote {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--gold);
+  border-left: 2px solid var(--gold);
+  padding-left: 1.2rem;
+  margin: 0 0 1.4rem;
+}
+.founder__bio { color: var(--ink-muted); line-height: 1.85; }
 
 @media (max-width: 860px) {
-  .about__inner { grid-template-columns: 1fr; }
-  .about__copy .section__heading, .about__copy .eyebrow { text-align: center; }
-  .about__body { text-align: center; }
+  .founder__inner { grid-template-columns: 1fr; }
+  .founder__copy .eyebrow, .founder__copy h2 { text-align: center; }
+  .founder__quote { border-left: none; border-top: 2px solid var(--gold); padding-left: 0; padding-top: 1rem; text-align: center; }
+  .founder__bio { text-align: center; }
 }
 
-/* ============ SERVICES ============ */
-.services { background: var(--beige); }
+/* ============ VALUES ============ */
+.values { background: var(--beige); }
 
-.service-grid {
+.value-grid {
   margin-top: 3.5rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
 }
 
-.service-card {
+.value-card {
   background: var(--cream);
   border-radius: 18px;
   padding: 2.2rem 1.6rem;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
 }
+.value-card:hover { transform: translateY(-6px); box-shadow: 0 20px 34px rgba(58, 44, 34, 0.12); }
+.value-card h3 { font-size: 1.15rem; margin-bottom: 0.6rem; }
+.value-card p { color: var(--ink-muted); font-size: 0.88rem; line-height: 1.6; margin: 0; }
 
-.service-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 34px rgba(58, 44, 34, 0.12);
-}
+@media (max-width: 900px) { .value-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .value-grid { grid-template-columns: 1fr; } }
 
-.service-card__icon {
-  width: 44px;
-  height: 44px;
-  margin: 0 auto 1.2rem;
-  border-radius: 50%;
-  border: 1px solid var(--gold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--gold);
-  font-family: "Cormorant Garamond", serif;
-  font-size: 1.3rem;
-}
+/* ============ INGREDIENTS (Speciality) ============ */
+.ingredients-section { background: var(--cream); }
 
-.service-card h3 { font-size: 1.15rem; margin-bottom: 0.6rem; }
-.service-card p { color: var(--ink-muted); font-size: 0.88rem; line-height: 1.6; margin: 0; }
-
-@media (max-width: 900px) {
-  .service-grid { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 560px) {
-  .service-grid { grid-template-columns: 1fr; }
-}
-
-/* ============ CONTACT ============ */
-.contact { background: var(--cream); }
-
-.contact__inner {
+.ingredient-grid {
+  margin-top: 3rem;
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 3.5rem;
-  align-items: start;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.ingredient-card {
+  background: linear-gradient(160deg, #ffffff, var(--beige) 130%);
+  border: 1px solid var(--beige-dark);
+  border-radius: 18px;
+  padding: 1.8rem;
+  will-change: transform;
+}
+.ingredient-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--gold); }
+.ingredient-card p { color: var(--ink-muted); font-size: 0.9rem; line-height: 1.6; margin: 0; }
+
+@media (max-width: 860px) { .ingredient-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .ingredient-grid { grid-template-columns: 1fr; } }
+
+/* ============ FREE FROM ============ */
+.free-from { background: var(--beige); }
+.free-from__inner { max-width: 640px; text-align: center; }
+.free-from__inner .eyebrow, .free-from__inner h2 { text-align: center; }
+.free-from-list {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem 2rem;
+  text-align: left;
+}
+.free-from-list li {
+  font-size: 0.95rem;
+  padding-left: 1.6rem;
+  position: relative;
+}
+.free-from-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+}
+@media (max-width: 560px) { .free-from-list { grid-template-columns: 1fr; } }
+
+/* ============ RITUAL ============ */
+.ritual { background: var(--cream); }
+.ritual__inner { max-width: 760px; }
+.ritual-list {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+.ritual-step {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid rgba(58, 44, 34, 0.08);
+}
+.ritual-step:last-child { border-bottom: none; padding-bottom: 0; }
+.ritual-step__num {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.8rem;
+  color: var(--gold);
+  min-width: 2.5rem;
+}
+.ritual-step h3 { font-size: 1.15rem; margin-bottom: 0.35rem; }
+.ritual-step p { color: var(--ink-muted); font-size: 0.92rem; line-height: 1.6; margin: 0; }
+
+/* ============ SHADE PICKER (Shades page) ============ */
+.shade-picker-section { background: var(--beige); }
+
+.shade-picker-section__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
 }
 
-.contact__copy .eyebrow, .contact__copy .section__heading { text-align: left; }
-.contact__copy .section__sub { text-align: left; margin-left: 0; }
+.shade-scene { width: 100%; height: min(460px, 50vh); touch-action: none; }
+#shade-canvas {
+  width: 100%; height: 100%; display: block; cursor: grab;
+  border-radius: 24px;
+  box-shadow: 0 24px 50px rgba(58, 44, 34, 0.16);
+}
+#shade-canvas:active { cursor: grabbing; }
 
-.contact__email {
-  margin-top: 1.5rem;
+.shade-picker__copy .eyebrow, .shade-picker__copy h2 { text-align: left; }
+
+.selected-shade { margin: 1.5rem 0 2rem; }
+.selected-shade h3 { font-size: 1.7rem; margin-bottom: 0.3rem; }
+.selected-shade p { color: var(--ink-muted); margin: 0 0 0.6rem; }
+.selected-shade .selected-shade__price {
   color: var(--gold);
   font-family: "Cormorant Garamond", serif;
   font-size: 1.3rem;
 }
 
-.contact__form {
-  background: var(--beige);
-  border-radius: 20px;
-  padding: 2.5rem;
+.shade-picker {
   display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
+  gap: 0.9rem;
+  flex-wrap: wrap;
 }
 
-.contact__form label {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  font-size: 0.82rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
+.swatch {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 3px solid var(--cream);
+  box-shadow: 0 0 0 1px var(--beige-dark), 0 8px 16px rgba(58, 44, 34, 0.12);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 0;
 }
-
-.contact__form input,
-.contact__form textarea {
-  font: inherit;
-  padding: 0.8rem 1rem;
-  border-radius: 10px;
-  border: 1px solid var(--beige-dark);
-  background: var(--cream);
-  color: var(--ink);
-  resize: vertical;
+.swatch:hover { transform: translateY(-3px); }
+.swatch.is-selected {
+  box-shadow: 0 0 0 2px var(--gold), 0 10px 18px rgba(58, 44, 34, 0.18);
+  transform: translateY(-3px) scale(1.05);
 }
-
-.contact__form input:focus,
-.contact__form textarea:focus {
-  outline: none;
-  border-color: var(--gold);
-}
-
-.contact__note {
-  font-size: 0.78rem;
-  color: var(--ink-muted);
-  line-height: 1.6;
-  margin: 0;
-}
-
-.contact__form .btn { align-self: flex-start; }
 
 @media (max-width: 860px) {
-  .contact__inner { grid-template-columns: 1fr; }
-  .contact__copy .eyebrow, .contact__copy .section__heading, .contact__copy .section__sub { text-align: center; }
+  .shade-picker-section__inner { grid-template-columns: 1fr; }
+  .shade-picker__copy .eyebrow, .shade-picker__copy h2 { text-align: center; }
+  .selected-shade, .shade-picker { justify-content: center; text-align: center; }
+  .shade-picker { justify-content: center; }
 }
 
 /* ============ FOOTER ============ */

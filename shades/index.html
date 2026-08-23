@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subrosa Beauty — Shades</title>
+  <meta name="description" content="Pick your Subrosa Beauty Vegan Gloss shade with an interactive 3D bottle preview." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../assets/css/style.css" />
+
+  <script>
+    const SUBROSA_BASE = "../";
+    const SUBROSA_PAGE = "shades";
+  </script>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "../assets/vendor/three/three.module.js",
+        "three/addons/": "../assets/vendor/three/addons/"
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="logo" href="../" id="logo-link">
+        <img class="logo__img" id="logo-img" alt="Subrosa Beauty logo" />
+        <span class="logo__text" id="logo-text"></span>
+      </a>
+      <nav class="nav__links" id="nav-links"></nav>
+      <a class="nav__cta" id="nav-cta" href="../shades/"></a>
+      <button class="nav__burger" id="nav-burger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="nav__mobile" id="nav-mobile"></nav>
+  </header>
+
+  <!-- ============ PAGE HEADER ============ -->
+  <section class="page-header">
+    <p class="eyebrow" id="shades-page-eyebrow"></p>
+    <h1 id="shades-page-heading"></h1>
+    <p id="shades-page-sub"></p>
+  </section>
+
+  <!-- ============ INTERACTIVE SHADE PICKER ============ -->
+  <section class="shade-picker-section" id="shade-picker-section">
+    <div class="section__inner shade-picker-section__inner">
+      <div class="shade-scene" id="shade-scene">
+        <canvas id="shade-canvas"></canvas>
+      </div>
+      <div class="shade-picker__copy">
+        <p class="eyebrow">Try It On</p>
+        <h2 class="section__heading">Tap a Shade</h2>
+        <div class="selected-shade">
+          <h3 id="selected-shade-name"></h3>
+          <p id="selected-shade-description"></p>
+          <p class="selected-shade__price" id="selected-shade-price"></p>
+        </div>
+        <div class="shade-picker" id="shade-picker"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FULL GRID ============ -->
+  <section class="products" id="products">
+    <div class="section__inner">
+      <p class="eyebrow reveal" id="products-eyebrow"></p>
+      <h2 class="section__heading reveal" id="products-heading"></h2>
+      <p class="section__sub reveal" id="products-sub"></p>
+
+      <div class="product-grid" id="product-grid"></div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <p id="footer-note"></p>
+    <p><a id="footer-email" href="#"></a></p>
+    <div class="footer__social" id="footer-social"></div>
+  </footer>
+
+  <script src="../assets/vendor/gsap/gsap.min.js"></script>
+  <script src="../assets/vendor/gsap/ScrollTrigger.min.js"></script>
+  <script src="../assets/js/config.js"></script>
+  <script src="../assets/js/chrome.js"></script>
+  <script src="../assets/js/content-shades.js"></script>
+  <script type="module" src="../assets/js/scene-shades.js"></script>
+  <script src="../assets/js/animations.js"></script>
+</body>
+</html>

@@ -2,18 +2,17 @@
   ============================================================
   SUBROSA BEAUTY — SITE CONTENT
   ============================================================
-  Edit anything in this file to update the website. No coding
+  Edit anything in this file to update the website across all
+  three pages (Our Story, Speciality, Shades). No coding
   knowledge needed beyond changing the text between quotes.
 
-  To swap in your real logo or product photos later, drop the
-  image files into /assets/img/ using the file names referenced
-  below (logo.png, shade images, etc). See README.md for details.
+  To swap in your real logo, founder photo, or product label
+  later, drop the image files into /assets/img/ using the file
+  names referenced below. See README.md for details.
 
   NOTE: Subrosa Beauty currently has one product — the Vegan
-  Gloss — sold in a few shades. The "Featured Products" section
-  below is built from the `shades` array so it can showcase that
-  one formula elegantly. If you launch new products later, just
-  add more entries.
+  Gloss — sold in several shades. The Shades page and the
+  "Featured" grid are both generated from the `shades` array.
   ============================================================
 */
 
@@ -35,140 +34,132 @@ const SUBROSA_CONFIG = {
     inkMuted: "#8A7864",
   },
 
-  // ---- Navigation ----
+  // ---- Navigation (path is relative to the site root; nav.js prefixes it
+  //      with "./" or "../" depending on how deep the current page is) ----
   nav: [
-    { label: "Products", href: "#products" },
-    { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Contact", href: "#contact" },
+    { label: "Our Story", path: "", pageId: "story" },
+    { label: "Speciality", path: "speciality/", pageId: "speciality" },
+    { label: "Shades", path: "shades/", pageId: "shades" },
   ],
   navCta: "Shop the Gloss",
-  navCtaLink: "#products",
+  navCtaPath: "shades/",
 
-  // ---- Hero ----
+  // ================= OUR STORY (/) =================
   hero: {
     eyebrow: "Vegan. Cruelty-Free. Under the Rose.",
     headline: "Subrosa Beauty",
     tagline: "The Vegan Gloss — weightless shine, zero compromises.",
-    ctaPrimary: "Shop the Gloss",
-    ctaPrimaryLink: "#products",
-    ctaSecondary: "Our Story",
-    ctaSecondaryLink: "#about",
+    ctaPrimary: "Explore Shades",
+    ctaPrimaryPath: "shades/",
+    ctaSecondary: "Read Our Story",
+    ctaSecondaryHash: "#narrative",
   },
 
-  // ---- Featured Products (shades of the Vegan Gloss) ----
-  productsIntro: {
-    eyebrow: "Featured",
-    heading: "The Vegan Gloss",
-    sub: "One clean formula, three ways to wear it. Non-sticky, high-shine, 100% vegan.",
+  narrative: {
+    eyebrow: "Our Story",
+    heading: "Sub Rosa",
+    body:
+      "\"Sub rosa\" — under the rose — is an old term for something held in confidence. " +
+      "Rooms marked with a rose overhead meant: what's said here stays here. We borrowed " +
+      "the phrase because that's how we make things — quietly, carefully, without cutting " +
+      "corners on what goes into the formula or what's left out of it.\n\n" +
+      "Subrosa Beauty started with one product, made one way: a vegan, cruelty-free gloss " +
+      "that feels as good as it looks. No animal-derived ingredients, no compromises on " +
+      "shine, no rushing the batch. Everything else is still just the one gloss — worn " +
+      "boldly, made quietly.",
   },
-  shades: [
-    {
-      name: "Rosewood Veil",
-      swatch: "#B5716B",
-      description: "A sheer, rosy nude for everyday wear.",
-      price: "$24.00",
-    },
-    {
-      name: "Champagne Hush",
-      swatch: "#D9B87C",
-      description: "Warm golden shimmer over bare lips.",
-      price: "$24.00",
-    },
-    {
-      name: "Honey Undertone",
-      swatch: "#A9744B",
-      description: "Rich caramel gloss with a soft glow.",
-      price: "$24.00",
-    },
+
+  founder: {
+    eyebrow: "The Founder",
+    name: "Founder Name",       // TODO: replace with your name
+    title: "Founder & Formulator",
+    photo: "assets/img/founder.jpg",
+    quote: "I wanted a gloss I didn't have to explain — no animal ingredients, no compromise on shine.",
+    bio:
+      "Subrosa Beauty is a solo, small-batch label. Every shade is mixed, tested, and " +
+      "bottled by hand before it ships — which is also why the line stays deliberately " +
+      "small: one formula, done properly, before anything else gets added.",
+  },
+
+  values: {
+    eyebrow: "What We Stand For",
+    heading: "Our Values",
+    items: [
+      { title: "Vegan, No Exceptions", description: "Every ingredient is plant- or mineral-derived. Nothing animal, ever." },
+      { title: "Cruelty-Free", description: "Never tested on animals, at any stage, by us or anyone we work with." },
+      { title: "Small Batch", description: "Mixed and bottled in small runs so quality never gets diluted for scale." },
+      { title: "Quiet Luxury", description: "Understated packaging, honest ingredient lists, no overclaiming." },
+    ],
+  },
+
+  // ================= SPECIALITY (/speciality/) =================
+  speciality: {
+    eyebrow: "Speciality",
+    heading: "The Vegan Formula",
+    intro:
+      "One gloss, formulated without a single animal-derived ingredient. Here's exactly " +
+      "what's in it, what isn't, and how to wear it.",
+  },
+
+  ingredients: [
+    { name: "Vegan Shea Butter", description: "Deeply conditions and softens lips without any beeswax." },
+    { name: "Vitamin E", description: "An antioxidant that helps protect lips from everyday dryness." },
+    { name: "Jojoba Oil", description: "A lightweight plant oil that mimics skin's natural lipids for a non-greasy feel." },
+    { name: "Candelilla Wax", description: "A plant-based wax (used instead of beeswax) that gives the gloss its glide." },
+    { name: "Mica", description: "Adds soft, reflective shimmer for that glassy finish." },
+    { name: "Natural Rose Flavor", description: "A subtle, clean rose note — no artificial fragrance." },
   ],
 
-  // ---- Product detail (shared formula info) ----
+  freeFrom: [
+    "Beeswax or any animal-derived ingredient",
+    "Parabens",
+    "Sulfates",
+    "Phthalates",
+    "Gelatin or carmine",
+    "Animal testing, at any stage",
+  ],
+
+  ritual: [
+    { step: "01", title: "Prep", description: "Start on bare or lipstick-layered lips for the cleanest finish." },
+    { step: "02", title: "Apply", description: "Glide the wand from center to corners — one coat is buildable, sheer to bold." },
+    { step: "03", title: "Press", description: "Press lips together lightly to even out the shine, no sticky drag." },
+    { step: "04", title: "Reapply", description: "Touch up any time — the formula layers cleanly without pilling." },
+  ],
+
+  // ================= SHADES (/shades/) =================
+  shadesIntro: {
+    eyebrow: "Featured",
+    heading: "The Vegan Gloss",
+    sub: "One clean formula, six ways to wear it. Non-sticky, high-shine, 100% vegan.",
+  },
+  shadesPageIntro: {
+    eyebrow: "Shades",
+    heading: "Pick Your Shade",
+    sub: "Tap a swatch to see it on the bottle. Every shade is the same vegan formula.",
+  },
+  shades: [
+    { name: "Rosewood Veil", swatch: "#B5716B", description: "A sheer, rosy nude for everyday wear.", price: "$24.00" },
+    { name: "Champagne Hush", swatch: "#D9B87C", description: "Warm golden shimmer over bare lips.", price: "$24.00" },
+    { name: "Honey Undertone", swatch: "#A9744B", description: "Rich caramel gloss with a soft glow.", price: "$24.00" },
+    { name: "Bare Confession", swatch: "#C99A8E", description: "The barely-there nude, just glass.", price: "$24.00" },
+    { name: "Midnight Rosé", swatch: "#7A4552", description: "A deeper wine-rose for evening wear.", price: "$24.00" },
+    { name: "Sheer Petal", swatch: "#E3B7B0", description: "A soft, cool-pink wash of color.", price: "$24.00" },
+  ],
+
+  // ---- Product label (drawn onto the 3D bottle) ----
   product: {
     name: "Subrosa Vegan Gloss",
-    tagline: "High-shine, weightless, 100% vegan formula",
-    price: "$24.00",
     labelLine1: "SUBROSA",
     labelLine2: "VEGAN GLOSS",
     // Optional: set to an image path (e.g. "assets/img/product-label.png")
     // to use a real photo/label instead of the generated text label on
     // the 3D bottle. Leave as null to keep the generated label.
     labelImage: null,
-
-    description:
-      "A weightless, high-shine gloss built entirely on vegan, cruelty-free ingredients. " +
-      "Subrosa Vegan Gloss glides on smooth, feels like nothing, and leaves lips looking " +
-      "glassy without the stick. Made in small batches, made to be seen.",
-
-    features: [
-      "100% vegan & cruelty-free formula",
-      "Non-sticky, high-shine finish",
-      "Hydrates with shea butter & vitamin E",
-      "No parabens, no sulfates, no animal-derived ingredients",
-      "Available in three flattering shades",
-    ],
-
-    ingredients:
-      "Vegan Shea Butter, Vitamin E, Jojoba Oil, Candelilla Wax, Mica, Natural Rose Flavor.",
-  },
-
-  // ---- About ----
-  about: {
-    eyebrow: "Our Story",
-    heading: "Beauty, kept quiet.",
-    body:
-      "Subrosa Beauty was founded on a simple idea: luxury shouldn't cost anything living. " +
-      "\"Subrosa\" — under the rose — is an old term for something held in confidence. We " +
-      "borrowed it because that's how we make things: quietly, carefully, in small batches, " +
-      "without cutting corners on what goes into the formula or what's left out of it. " +
-      "Every Subrosa product is 100% vegan and cruelty-free, made to feel indulgent without " +
-      "asking you to compromise.",
-    stats: [
-      { value: "100%", label: "Vegan formulas" },
-      { value: "0", label: "Animal-derived ingredients" },
-      { value: "Small", label: "Batch made" },
-    ],
-  },
-
-  // ---- Services ("the Subrosa experience") ----
-  servicesIntro: {
-    eyebrow: "Services",
-    heading: "The Subrosa Experience",
-    sub: "A few ways we take care of the details, so you don't have to.",
-  },
-  services: [
-    {
-      title: "Shade Matching Concierge",
-      description: "Not sure which shade suits you? Message us a photo and we'll help you pick.",
-    },
-    {
-      title: "Complimentary Gift Wrapping",
-      description: "Every order can be wrapped and note-carded at no extra cost — just ask.",
-    },
-    {
-      title: "Wholesale & Private Events",
-      description: "Boutiques, salons, and private events can inquire about bulk and custom orders.",
-    },
-    {
-      title: "Express Shipping",
-      description: "Orders placed before 2pm ship the same day, arriving in 2–3 business days.",
-    },
-  ],
-
-  // ---- Contact / Booking ----
-  contact: {
-    eyebrow: "Contact",
-    heading: "Get in touch",
-    sub: "Questions, wholesale inquiries, or private event bookings — we read everything ourselves.",
-    email: "hello@subrosabeauty.com",
-    formNote:
-      "This form opens your email client with your message pre-filled — replace this later " +
-      "with a form service (like Formspree) if you'd rather receive submissions directly.",
-    submitLabel: "Send Message",
   },
 
   // ---- Footer ----
   footerNote: "Subrosa Beauty — crafted vegan, worn boldly.",
+  footerEmail: "hello@subrosabeauty.com",
   socialLinks: [
     // Add your real links here, e.g. { label: "Instagram", url: "https://instagram.com/subrosabeauty" }
   ],

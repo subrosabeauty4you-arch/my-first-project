@@ -1,63 +1,69 @@
-# Nimbus — Ecommerce Storefront
+# Subrosa Beauty
 
-A complete, self-contained ecommerce website built with plain HTML, CSS, and
-JavaScript. No build step, no dependencies, no backend — just open it in a
-browser.
+The homepage for **Subrosa Beauty** — a French-inspired, quietly luxurious
+beauty house. *Sub rosa* means "under the rose": something kept quietly,
+something beautiful shared in confidence. That philosophy runs through the
+whole design.
 
-## Features
+> **Beauty, whispered in confidence.**
 
-- **Product catalog** — 16 demo products across Apparel, Accessories, Home, and Tech
-- **Search** — live, debounced search across name, category, and description
-- **Filter & sort** — filter by category; sort by price, name, or rating
-- **Product detail modal** — full description, rating, and reviews
-- **Shopping cart** — slide-out drawer with quantity controls, persisted in `localStorage`
-- **Checkout** — shipping/payment form with validation, live order summary
-  (subtotal, shipping, tax), and an order-confirmation screen
-- **Responsive** — works from mobile to desktop
-- **Accessible touches** — semantic markup, ARIA labels, keyboard (Esc) support
+A single, self-contained homepage built with plain HTML, CSS, and JavaScript.
+No build step, no dependencies, no backend — just open it in a browser.
 
-> This is a front-end demo. No real payments are processed and no data leaves
-> the browser. Do not enter real card details.
+## The homepage, section by section
+
+1. **Hero** — brand introduction, tagline, and dual CTAs over a soft
+   champagne/blush editorial backdrop with a hand-drawn rose motif.
+2. **The Subrosa Collection** — the ultimate glosses, as clean luxury product
+   cards with Add to Bag + Quick View.
+3. **Our Story** — the brand narrative beside an editorial monogram panel.
+4. **Explore Subrosa** — Story, Collection, Shades, Journal, Philosophy, each a
+   minimal card with a subtle hover lift.
+5. **The Signature Gloss** — a shade lineup (Café Confessions, Rose Whisper,
+   Cerise Éclat, Pure Secret, Jardin Secret).
+6. **The Subrosa Principles** — four brand values on a deep ink backdrop.
+7. **Follow the Subrosa World** — an Instagram-style visual grid.
+8. **Newsletter** — an understated, premium signup.
+9. **Footer** — full navigation, customer care, social, and the brand signature.
+
+## Design language
+
+- **Palette** — warm ivory, soft beige, champagne gold, blush/nude, and near-black ink.
+- **Type** — Cormorant Garamond (editorial serif) paired with Jost (clean sans),
+  loaded from Google Fonts.
+- **Motion** — gentle reveal-on-scroll, refined hover states, and a sticky header
+  that settles on scroll. Respects `prefers-reduced-motion`.
+- **Responsive** — fluid from mobile to desktop, with a slide-in mobile menu.
+
+## Notes
+
+- Product imagery is rendered as **bespoke inline-SVG gloss bottles** so the page
+  needs no external assets and stays distinctly on-brand. Swap in real photography
+  by replacing the `glossSVG()` output / product media in `js/subrosa.js` and
+  `.product-media` / `.shade-tube` in `css/subrosa.css`.
+- This is a front-end homepage. Add to Bag and the newsletter are demonstrated
+  client-side only — no data leaves the browser.
 
 ## Run it
 
-No tooling required. Either:
+No tooling required.
 
 ```bash
-# Option A: just open the file
-open index.html            # macOS  (use xdg-open on Linux)
+# open directly
+xdg-open index.html        # Linux (use `open` on macOS)
 
-# Option B: serve it (recommended, avoids any file:// quirks)
-python3 -m http.server 8000
-# then visit http://localhost:8000
+# or serve it (recommended)
+python3 -m http.server 8000   # then visit http://localhost:8000
 ```
 
 ## Project structure
 
 ```
 .
-├── index.html        # Storefront (hero, product grid, cart drawer, modal)
-├── checkout.html     # Checkout form + order summary + confirmation
+├── index.html          # The homepage
 ├── css/
-│   └── styles.css    # All styles and design tokens
-└── js/
-    ├── products.js   # Product catalog data
-    ├── cart.js       # Cart state (localStorage) + shared helpers
-    ├── app.js        # Storefront UI logic
-    └── checkout.js   # Checkout logic
+│   └── subrosa.css     # All styles and design tokens
+├── js/
+│   └── subrosa.js      # Product/shade data, SVG glosses, interactions
+└── CNAME               # Custom domain (undertherose.in)
 ```
-
-## Customizing
-
-- **Products** — edit the `PRODUCTS` array in `js/products.js`. Emojis stand in
-  for product images so the demo needs no external assets; swap in `<img>` tags
-  if you want real photography.
-- **Branding & colors** — edit the CSS custom properties under `:root` in
-  `css/styles.css` (`--accent`, fonts, radii, etc.).
-- **Shipping / tax rules** — adjust the constants at the top of `js/checkout.js`.
-
-## Possible next steps
-
-- Wire the checkout to a real payment provider (e.g. Stripe)
-- Add a backend/API for inventory and orders
-- Real product images and additional product pages
